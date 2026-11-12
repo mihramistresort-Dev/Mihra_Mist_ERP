@@ -15,3 +15,20 @@
 /* Quote builder */
 .quote-items{border:1px solid #e4ebe2;border-radius:10px;padding:13px;margin:16px 0;background:#fbfcfa}.quote-items-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.quote-items-head h3,.quote-preview h3{font-family:'Playfair Display';font-size:17px;margin:4px 0}.quote-line{border-top:1px solid #e8eee7;margin-top:12px;padding-top:8px}.quote-line-total{display:flex;flex-direction:column;justify-content:center;min-width:90px;padding:8px}.quote-line-total small{color:#829086;font-size:10px}.quote-line-total b{font-size:13px;color:#23432e}.quote-total{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:15px;background:#f2f6f0;border-radius:10px;font-size:12px}.quote-total span{color:#728075}.quote-total .total-label,.quote-total strong{font-size:15px;color:#1f432b}.quote-preview{background:#f8faf7;border:1px solid #e7ede5;border-radius:10px;padding:14px;margin:15px 0}.quote-preview p{display:flex;justify-content:space-between;gap:12px;font-size:12px;padding:7px 0;border-bottom:1px solid #e8eee7;margin:0}.quote-preview p span{color:#647467}.quote-preview .quote-grand{font-size:16px;border:0;color:#1f432b;padding-top:12px}.quote-grand span,.quote-grand b{color:#1f432b!important;font-weight:700}
 @media(max-width:760px){.quote-line .form-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Quote print layout */
+@media print {
+  @page { size: A4; margin: 16mm; }
+  body { background: #fff !important; }
+  body * { visibility: hidden !important; }
+  .quote-preview, .quote-preview * { visibility: visible !important; }
+  .quote-preview {
+    position: absolute !important; left: 0 !important; top: 0 !important;
+    width: 100% !important; margin: 0 !important; padding: 0 !important;
+    border: 0 !important; background: #fff !important; color: #172b1e !important;
+    font-size: 11pt !important;
+  }
+  .quote-preview h3 { font-size: 18pt !important; margin: 0 0 16pt !important; }
+  .quote-preview p { padding: 9pt 0 !important; font-size: 10pt !important; }
+  .quote-preview .quote-grand { font-size: 16pt !important; border-top: 1px solid #777 !important; }
+}
