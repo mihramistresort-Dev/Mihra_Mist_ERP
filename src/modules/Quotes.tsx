@@ -22,9 +22,6 @@ export function Quotes(){
  const nights=dateNights(checkIn,checkOut)
  const subtotal=useMemo(()=>items.reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*(i.kind==='room'?Math.max(1,i.nights):(i.kind==='extra'?Math.max(1,i.nights):1)),0),[items])
  const discountValue=Math.min(subtotal,Math.max(0,Number(discount)||0))
- const accommodationSubtotal=items.filter(i=>i.kind==='room'||i.kind==='extra').reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)
- const accommodationDiscount= subtotal>0 ? discountValue*(accommodationSubtotal/subtotal) : 0
- const accommodationFactor=accommodationSubtotal>0 ? Math.max(0,(accommodationSubtotal-accommodationDiscount)/accommodationSubtotal) : 0
  const roomItems=items.filter(i=>i.kind==='room'),extraItems=items.filter(i=>i.kind==='extra'),serviceItems=items.filter(i=>i.kind!=='room'&&i.kind!=='extra')
  const roomNights=roomItems.reduce((n,i)=>n+Math.max(0,i.quantity)*Math.max(1,i.nights),0)
  const extraGross=extraItems.reduce((n,i)=>n+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)
