@@ -24,8 +24,6 @@ export function Quotes(){
  const accommodationSubtotal=items.filter(i=>i.kind==='room'||i.kind==='extra').reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)
  const accommodationDiscount= subtotal>0 ? discountValue*(accommodationSubtotal/subtotal) : 0
  const accommodationFactor=accommodationSubtotal>0 ? Math.max(0,(accommodationSubtotal-accommodationDiscount)/accommodationSubtotal) : 0
- const roomLines=items.filter(i=>i.kind==='room')
- const extraPerNight=items.filter(i=>i.kind==='extra').reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)/Math.max(1,nights)
  const taxAmount=items.reduce((sum,i)=>{const qty=Math.max(0,i.quantity);const lineGross=qty*Math.max(0,i.unit_price)*((i.kind==='room'||i.kind==='extra')?Math.max(1,i.nights):1);if(i.kind==='room'||i.kind==='extra'){const rooms=Math.max(1,qty);const perUnitNet=(lineGross/rooms)*accommodationFactor/Math.max(1,i.nights);return sum+(perUnitNet*rooms*Math.max(1,i.nights)*(perUnitNet<=7500?0.05:0.18))}const netLine=lineGross*(subtotal>0?Math.max(0,(subtotal-discountValue)/subtotal):1);return sum+(netLine*0.18)},0)
  const total=Math.max(0,subtotal-discountValue)+taxAmount
  const reset=()=>{setLeadId('');setRateCategory('');setGuest('');setPhone('');setEmail('');setCheckIn('');setCheckOut('');setAdults(2);setChildren(0);setExtraPersons(0);setValidUntil('');setStatus('draft');setItems([makeItem()]);setDiscount('0');setNotes('');setSelected(null)}
