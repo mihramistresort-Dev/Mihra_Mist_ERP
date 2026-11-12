@@ -40,3 +40,34 @@
 .quote-rate-apply{background:#f2f6f0;border:1px solid #dfe9dc;border-radius:10px;padding:12px 14px;margin:14px 0}.quote-rate-apply label{margin-top:0}.quote-rate-apply button{width:100%;margin:4px 0 8px}.quote-rate-apply small{display:block;color:#718075;font-size:10px;line-height:1.5}
 
 .quote-whatsapp{display:inline-flex;align-items:center;justify-content:center;width:auto;min-height:38px;padding:9px 14px;text-decoration:none;white-space:nowrap}.modal .actions .quote-whatsapp{flex:1}
+
+
+/* Mihra Mist quotation print layout */
+.quote-print-sheet{display:none}
+@media print{
+ @page{size:A4;margin:12mm}
+ body *{visibility:hidden!important}
+ .quote-print-sheet,.quote-print-sheet *{visibility:visible!important}
+ .quote-print-sheet{display:block!important;position:absolute;inset:0;width:100%;color:#243a2d;background:#fff;font:10.5pt/1.45 Arial,sans-serif}
+ .quote-print-header{display:flex;align-items:center;gap:12px;justify-content:space-between}
+ .quote-print-mark{width:58px;height:58px;border-radius:50%;background:#e9eadc;color:#68764e;display:grid;place-items:center;font-size:32px;border:1px solid #c9c39a}
+ .quote-print-brand{flex:1}.quote-print-brand h1{font: bold 22pt Georgia,serif;margin:0;color:#1e3328}.quote-print-brand p{font-size:8pt;letter-spacing:.8px;margin:2px 0}
+ .quote-print-header address{text-align:right;font-style:normal;font-size:8.5pt;color:#69746d}
+ .quote-print-rule{border-top:2px solid #b6a66a;margin:12px 0 18px}
+ .quote-print-sheet h2{font: bold 20pt Georgia,serif;margin:0 0 12px}
+ .quote-print-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin-bottom:16px}
+ .quote-print-meta p{margin:0}
+ .quote-print-table{width:100%;border-collapse:collapse;margin:10px 0 14px}
+ .quote-print-table th{background:#f1eee3;border:1px solid #c9bd8e;text-align:left;padding:8px}
+ .quote-print-table td{border:1px solid #dedbd0;padding:8px}
+ .quote-print-table th:last-child,.quote-print-table td:last-child{text-align:right}
+ .quote-print-totals{width:48%;margin-left:auto}
+ .quote-print-totals p{display:flex;justify-content:space-between;margin:5px 0;padding:3px 0;border-bottom:1px solid #e4e4dc}
+ .quote-print-totals .grand{border-top:2px solid #354b38;font:bold 15pt Georgia,serif;padding-top:8px}
+ .quote-print-terms{margin-top:24px;color:#68746d;font-size:8.5pt}
+ .quote-print-terms p{margin:5px 0}
+ .quote-print-policy{margin-top:16px;padding:10px 12px;background:#fbf3df;border-left:4px solid #c7ad57;font-size:8.5pt}
+ .quote-print-footer{border-top:1px solid #ddd;margin-top:16px;padding-top:8px;color:#7b827d;font-size:8pt}
+ .crm-detail,.modal-backdrop{display:block!important;position:static!important;background:transparent!important;box-shadow:none!important;max-width:none!important;width:100%!important;padding:0!important;margin:0!important;overflow:visible!important}
+ .crm-detail>*:not(.quote-print-sheet){display:none!important}
+}
