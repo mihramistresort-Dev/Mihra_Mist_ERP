@@ -67,7 +67,7 @@ export function Rates(){
  return <section className="module rates-module">
   <div className="eyebrow">MIHRA MIST · ADMINISTRATOR PANEL</div><h1>Rate Management</h1>
   <p className="intro">Manage approved room rates and extra-person charges. Changes here are used by the Quote Builder.</p>
-  <div className="crm-summary"><div><small>Rate categories</small><b>{categories.length}</b></div><div><small>Active rules</small><b>{rules.filter(r=>r.active).length}</b></div><div><small>Festival rules</small><b>{rules.filter(r=>r.active&&r.rule_type==='festival').length}</b></div><div><small>Peak-season rules</small><b>{rules.filter(r=>r.active&&r.rule_type==='peak_season').length}</div></div>
+  <div className="crm-summary"><div><small>Rate categories</small><b>{categories.length}</b></div><div><small>Active rules</small><b>{rules.filter(r=>r.active).length}</b></div><div><small>Festival rules</small><b>{rules.filter(r=>r.active&&r.rule_type==='festival').length}</b></div><div><small>Peak-season rules</small><b>{rules.filter(r=>r.active&&r.rule_type==='peak_season').length}</b></div></div>
   {error&&<div className="alert errorbox">{error}</div>}{notice&&<div className="alert successbox">{notice}</div>}
   <div className="panel" style={{marginBottom:20}}>
    <h2>Extra-person charges</h2><p className="rates-help">Charge per extra person, per night. These values are editable by administrators.</p>
