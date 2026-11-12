@@ -25,7 +25,7 @@ export function Quotes(){
  const accommodationDiscount= subtotal>0 ? discountValue*(accommodationSubtotal/subtotal) : 0
  const accommodationFactor=accommodationSubtotal>0 ? Math.max(0,(accommodationSubtotal-accommodationDiscount)/accommodationSubtotal) : 0
  const roomLines=items.filter(i=>i.kind==='room')
- const extraPerNight=items.filter(i=>i.kind==='extra').reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)/Math.max(1,...roomLines.map(i=>i.nights))
+ const extraPerNight=items.filter(i=>i.kind==='extra').reduce((s,i)=>s+Math.max(0,i.quantity)*Math.max(0,i.unit_price)*Math.max(1,i.nights),0)/Math.max(1,nights)
  const taxAmount=roomLines.reduce((sum,i)=>{const rooms=Math.max(1,i.quantity);const perUnitNet=((Math.max(0,i.unit_price)+(extraPerNight/rooms))*accommodationFactor);return sum+(perUnitNet*rooms*(perUnitNet<=7500?0.05:0.18))},0)
  const total=Math.max(0,subtotal-discountValue)+taxAmount
  const reset=()=>{setLeadId('');setRateCategory('');setGuest('');setPhone('');setEmail('');setCheckIn('');setCheckOut('');setAdults(2);setChildren(0);setExtraPersons(0);setValidUntil('');setStatus('draft');setItems([makeItem()]);setDiscount('0');setNotes('');setSelected(null)}
