@@ -11,9 +11,30 @@ export function AuthGate({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return }
-    supabase.auth.getSession().then(({ data }) => { setSession(data.session); setLoading(false) })
-    const { data } = supabase.auth.onAuthStateChange((_event, next) => setSession(next))
-    return () => data.subscription.unsubscribe()
+    let mounted = true
+    supabase.auth.getSession()
+      .then(({ data, error: sessionError }) => {
+        if (!mounted) return
+        setSession(data.session)
+        if (sessionError) setError(`Session check failed: ${sessionError.message}`)
+        setLoading(false)
+      })
+      .catch((reason: unknown) => {
+        if (!mounted) return
+        const message = reason instanceof Error ? reason.message : 'Unknown connection error'
+        setError(`Unable to check sign-in session: ${message}`)
+        setLoading(false)
+      })
+    const { data } = supabase.auth.onAuthStateChange((_event, next) => {
+      if (!mounted) return
+      setSession(next)
+      setLoading(false)
+      setError('')
+    })
+    return () => {
+      mounted = false
+      data.subscription.unsubscribe()
+    }
   }, [])
 
   if (!cloudConfigured || !supabase) return <main className="setup"><section className="panel"><div className="mark">MM</div><h1>Mihra Mist ERP 2.0</h1><p>Cloud setup is required before staff can sign in.</p><p className="muted">Create your Supabase project, then add its URL and publishable key to the Netlify environment variables. No service-role key belongs in the browser.</p><span className="pill warn">Awaiting Supabase configuration</span></section></main>
