@@ -26,3 +26,8 @@ See `ERP2_NEXT_STEPS.md` for deployment and owner-profile bootstrap notes.
 ## Important
 
 This is an integration foundation, not a claim that every ERP module or end-to-end operational workflow is finished. Test all workflows before production use.
+
+
+## Automated build
+
+GitHub Actions runs `npm install` and `npm run build` on pushes to `erp2-reservation-calendar`.
